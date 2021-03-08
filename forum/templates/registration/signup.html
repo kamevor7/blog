@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <form method="POST" action="{% url 'signup' %}">
+    {% csrf_token %}
+
+        <div class="col-4 mx-auto">
+            <p>
+            {% if error %}
+                ** {{ error }} **
+            {% endif %}
+            </p> <br>
+            <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
+            <label for="id_username" class="visually-hidden">Username</label>
+            Username:
+            <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus>
+            <label for="inputPassword" class="visually-hidden">Password</label>
+            Password:
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            Confirm Password:
+            <input type="password" name="conf_password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+            <br><button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up!</button>
+        </div>
+        <div class="col-4 py-2 mx-auto">
+            <p>
+                <a href="{% url 'login' %}">Already a Member? Log in here!</a>
+            </p>
+        </div>
+
+  </form>
+</div>
+
+{% endblock %}
