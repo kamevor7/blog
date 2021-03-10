@@ -28,7 +28,10 @@ def signup(request):
                                         'PLease Try a Different Username!'})
             except User.DoesNotExist:
                 user = User.objects.create_user(request.POST['username'],
-                                                password=request.POST['password'])
+                                                password=request.POST['password'],
+                                                first_name=request.POST['first_name'],
+                                                last_name=request.POST['last_name'],
+                                                email=request.POST['email'])
                 auth.login(request, user)
                 return redirect('edit_profile')
         else:

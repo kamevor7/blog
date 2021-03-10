@@ -1,35 +1,59 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <form method="POST" action="{% url 'signup' %}">
-    {% csrf_token %}
+    <div class="container">
+        <form method="POST" action="{% url 'signup' %}">
+            {% csrf_token %}
 
-        <div class="col-4 mx-auto">
-            <p>
-            {% if error %}
-                ** {{ error }} **
-            {% endif %}
-            </p> <br>
-            <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
-            <label for="id_username" class="visually-hidden">Username</label>
-            Username:
-            <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus>
-            <label for="inputPassword" class="visually-hidden">Password</label>
-            Password:
-            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            Confirm Password:
-            <input type="password" name="conf_password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <div class="col-4 mx-auto">
+                <p>
+                    {% if error %}
+                        ** {{ error }} **
+                    {% endif %}
+                </p> <br>
+                <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
+                <hr>
 
-            <br><button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up!</button>
-        </div>
-        <div class="col-4 py-2 mx-auto">
-            <p>
-                <a href="{% url 'login' %}">Already a Member? Log in here!</a>
-            </p>
-        </div>
+                <div class="row">
+                    <label for="id_username" class="visually-hidden">Username</label>
+                    <input type="text" name="username" id="id_username" class="form-control" placeholder="Username"
+                           required autofocus>
+                </div>
+                <div class="row pt-lg-3">
+                    <label for="inputPassword" class="visually-hidden">Password</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control"
+                           placeholder="Password" required>
+                </div>
+                <div class="row pt-lg-3">
+                    <input type="password" name="conf_password" id="inputPassword" class="form-control"
+                           placeholder="Password" required>
+                </div>
+                <div class="row pt-lg-3">
+                    <label for="id_first_name" class="visually-hidden">First Name: </label>
+                    <input type="text" name="first_name" id="id_first_name" class="form-control"
+                           placeholder="Fisrt Name" required autofocus>
+                </div>
+                <div class="row pt-lg-3">
+                    <label for="id_lastname" class="visually-hidden">Last Name: </label>
+                    <input type="text" name="last_name" id="id_last_name" class="form-control" placeholder="Last Name"
+                           required autofocus>
+                </div>
+                <div class="row pt-lg-3">
+                    <label for="id_email" class="visually-hidden">Email Address: </label>
+                    <input type="email" name="email" id="id_email" class="form-control" placeholder="Email Address"
+                           required autofocus>
+                </div>
 
-  </form>
-</div>
+                    <br>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up!</button>
+                </div>
+                <div class="col-4 py-2 mx-auto">
+                    <p>
+                        <a href="{% url 'login' %}">Already a Member? Log in here!</a>
+                    </p>
+                </div>
+
+        </form>
+    </div>
 
 {% endblock %}
