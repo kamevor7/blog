@@ -1,38 +1,58 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <form method="POST" action="{% url 'login' %}">
-    {% csrf_token %}
+    <div class="container">
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
 
-    <div class="col-4 mx-auto">
-        <p>
-            {% if error %}
-                ** {{ error }} **
-            {% endif %}
-        </p> <br>
-        <h1 class="h3 mb-3 fw-normal">Log In</h1>
-        <label for="id_username" class="visually-hidden">Username</label>
-        Username:
-        <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus>
-        <label for="inputPassword" class="visually-hidden">Password</label>
-        Password:
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <br>
-        <div>
-            <p>
-                <a href="{% url 'password_reset' %}">Forgotten Password?</a>
-            </p>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Log In!</button>
-        <div class="col-12 py-2 mx-auto">
-            <p>
-                <a href="{% url 'signup' %}">New Member? Join here!</a>
-            </p>
-        </div>
+            <div class="col-4 pt-lg-5 mx-auto">
+                <h5 style="color: red">
+                    {% if form.errors %}
+                        ** Invalid Username or Password!
+                        Please Try Again! **
+                    {% endif %}
+                </h5>
+            </div>
+            <div class="col-4 pt-lg-5 mx-auto">
+                <h1 class="h3 mb-3 fw-normal">
+                    Log In
+                </h1>
+                <hr>
+
+                <div class="row pt-lg-3">
+                    <label for="id_username" class="visually-hidden">Username</label>
+                    <input type="text" name="username" id="id_username" class="form-control" placeholder="Username"
+                           required autofocus>
+                </div>
+                <div class="row pt-lg-3">
+                    <label for="inputPassword" class="visually-hidden">Password</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control"
+                           placeholder="Password" required>
+                </div>
+                <div class="row pt-lg-3">
+                    <div class="col-8">
+                        <p>
+                            <a href="{% url 'signup' %}">
+                                New Member?
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <p>
+                            <a href="{% url 'password_reset' %}">
+                                Forgot Password?
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="row pt-lg-2">
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">
+                        Log In!
+                    </button>
+                </div>
+            </div>
+
+        </form>
     </div>
-
-  </form>
-</div>
 
 {% endblock %}

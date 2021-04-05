@@ -5,12 +5,14 @@
         <form method="POST" action="{% url 'signup' %}">
             {% csrf_token %}
 
-            <div class="col-4 mx-auto">
-                <p>
+            <div class="col-4 pt-lg-4 mx-auto">
+                <h5 style="color: red">
                     {% if error %}
                         ** {{ error }} **
                     {% endif %}
-                </p> <br>
+                </h5>
+            </div>
+            <div class="col-4 pt-lg-4 mx-auto">
                 <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
                 <hr>
 
@@ -26,7 +28,7 @@
                 </div>
                 <div class="row pt-lg-3">
                     <input type="password" name="conf_password" id="inputPassword" class="form-control"
-                           placeholder="Password" required>
+                           placeholder="Confirm Password" required>
                 </div>
                 <div class="row pt-lg-3">
                     <label for="id_first_name" class="visually-hidden">First Name: </label>
@@ -34,7 +36,7 @@
                            placeholder="Fisrt Name" required autofocus>
                 </div>
                 <div class="row pt-lg-3">
-                    <label for="id_lastname" class="visually-hidden">Last Name: </label>
+                    <label for="id_last_name" class="visually-hidden">Last Name: </label>
                     <input type="text" name="last_name" id="id_last_name" class="form-control" placeholder="Last Name"
                            required autofocus>
                 </div>
@@ -43,17 +45,21 @@
                     <input type="email" name="email" id="id_email" class="form-control" placeholder="Email Address"
                            required autofocus>
                 </div>
-
-                    <br>
-                    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up!</button>
+                <div class="row pt-lg-3">
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">
+                        Sign Up!
+                    </button>
                 </div>
-                <div class="col-4 py-2 mx-auto">
-                    <p>
-                        <a href="{% url 'login' %}">Already a Member? Log in here!</a>
-                    </p>
-                </div>
-
+            </div>
         </form>
+        <div class="col-4 pt-lg-2 mx-auto">
+            <hr>
+            <h6>
+                <a href="{% url 'login' %}">
+                    Already a Member? Log in here!>>>
+                </a>
+            </h6>
+        </div>
     </div>
 
 {% endblock %}

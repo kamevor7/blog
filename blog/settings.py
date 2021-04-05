@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+import datetime
+from braintree import Configuration, Environment
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -134,3 +136,19 @@ EMAIL_HOST_USER = 'isqa3900.project'
 EMAIL_HOST_PASSWORD = 'Project3900'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+CART_SESSION_ID = 'cart'
+
+
+# Braintree settings - replace with your credentials after signing up for braintree account
+BRAINTREE_MERCHANT_ID = 'Merchant ID'  # Merchant ID
+BRAINTREE_PUBLIC_KEY = 'Public Key'   # Public Key
+BRAINTREE_PRIVATE_KEY = 'Private key'  # Private key
+
+
+Configuration.configure(
+    Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)

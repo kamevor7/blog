@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        {% if user.is_authenticated %}
+            <div class="row pt-5">
+                <h2 style="padding-left: 15Px">
+                    List of Users
+                </h2>
+            </div>
+            <hr>
+            <div class="pt-3">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr class="bg-info">
+                        <th>UserName</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Last Login</th>
+                        <th>Date Joined</th>
+                        <th>Staff</th>
+                        <th>Active</th>
+                        <th colspan="3">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users.all %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.first_name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.last_login }}</td>
+                            <td>{{ user.date_joined }}</td>
+                            <td>{{ user.is_staff }}</td>
+                            <td>{{ user.is_active }}</td>
+                            {% if user.is_staff %}
+                                <td><a href="{% url 'downgrade' pk=user.pk %}" class="btn btn-warning">Remove Staff</a></td>
+                            {% else %}
+                                <td><a href="{% url 'upgrade' pk=user.pk %}" class="btn btn-warning">Make Staff</a></td>
+                            {% endif %}
+                            {% if user.is_active %}
+                                <td><a href="{% url 'suspend' pk=user.pk %}" class="btn btn-warning">Suspend</a></td>
+                            {% else %}
+                                <td><a href="{% url 'activate' pk=user.pk %}" class="btn btn-warning">Activate</a></td>
+                            {% endif %}
+                            <td><a href="{% url 'del_user' pk=user.pk %}"
+                                   onclick="return confirm('Are you sure you want to delete {{ user.first_name }}?')"
+                                   class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
+</html>
